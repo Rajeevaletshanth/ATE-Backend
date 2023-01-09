@@ -7,7 +7,7 @@ Content-Type: application/json
     "address" : "Milan, Italy",
     "authority" : {"role" : ["superadmin", "admin", "user"]},
     "phone_no" : "0123456789",
-    "email" : "admin5@ltwtech.it",
+    "email" : "admin@ltwtech.it",
     "password" : "1234",
     "avatar" : "/img/avatars/thumb-1.jpg"
 }
