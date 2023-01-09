@@ -1,0 +1,16 @@
+###
+//Create Table
+POST http://localhost:5005/table_reservation/create/1
+Content-Type: application/json
+
+{
+      "table_ids": [1,4,5],
+      "customer_name": "Rajeev",
+      "customer_phone": "0714567892",
+      "customer_email": "vjvfc2k16@gmail.com",
+      "guests_count": 10,
+      "reservation_date": "2023-01-25",
+      "reservation_from": "20:00",
+      "reservation_to": "21:00",
+      "note": "Birthday Party"
+}

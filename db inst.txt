@@ -1,0 +1,3 @@
+1. db-migrate create addtocart --sql-file
+
+2. db-migrate up addtocart

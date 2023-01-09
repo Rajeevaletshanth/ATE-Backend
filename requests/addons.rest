@@ -1,0 +1,33 @@
+###Add a category
+POST http://localhost:5005/addons/create
+Content-Type: application/json
+
+{
+    "restaurant_id": 1,
+    "name": "Cheese",
+    "price": 5
+}
+
+###Get All
+GET http://localhost:5005/addons/list
+Content-Type: application/json
+
+###Get by id
+GET http://localhost:5005/addons/1
+Content-Type: application/json
+
+
+###Edit a product
+PUT http://localhost:5005/addons/edit/1
+Content-Type: application/json
+
+{
+    "restaurant_id": 1,
+    "name": "Cheese",
+    "price": 4
+}
+
+
+###Delete
+DELETE http://localhost:5005/addons/delete/1
+Content-Type: application/json

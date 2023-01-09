@@ -1,0 +1,42 @@
+###Add a category
+POST http://localhost:5005/delivery_people/create
+Content-Type: application/json
+
+{
+    "restaurant_id": 1,
+    "name": "Ghost Rider",
+    "email": "callhell007@gdrider.com",
+    "avatar": "random image.jpg",
+    "address": "Hell Rd, Mordor",
+    "phone_no": "000000000",
+    "device_id": "hell-0000",
+    "device_os": "helldroid"
+}
+
+###Get All
+GET http://localhost:5005/delivery_people/list
+Content-Type: application/json
+
+###Get by id
+GET http://localhost:5005/delivery_people/1
+Content-Type: application/json
+
+
+###Edit a product
+PUT http://localhost:5005/delivery_people/edit/1
+Content-Type: application/json
+
+{
+    "name": "Ghost Rider",
+    "email": "callhell007@gdrider.com",
+    "address": "Hell Rd, Mordor",
+    "avatar": "random image.jpg",
+    "phone_no": "000000000",
+    "device_id": "hell-0000",
+    "device_os": "helldroid"
+}
+
+
+###Delete
+DELETE http://localhost:5005/delivery_people/delete/1
+Content-Type: application/json

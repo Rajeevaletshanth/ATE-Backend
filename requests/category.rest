@@ -1,0 +1,39 @@
+###Add a category
+POST http://localhost:5005/category/create
+Content-Type: application/json
+
+{
+    "name": "Dessert",
+    "restaurant_id": 1,
+    "description": "Eat n Die",
+    "avatar": "dessert.jpn"
+}
+
+###Get All
+GET http://localhost:5005/category/list
+Content-Type: application/json
+
+###Get by id
+GET http://localhost:5005/category/1
+Content-Type: application/json
+
+
+###Edit a product
+PUT http://localhost:5005/category/edit/1
+Content-Type: application/json
+
+{
+    "name": "Dessert",
+    "restaurant_id": 1,
+    "description": "Don't die",
+    "avatar": "dessert.jpn"
+}
+
+
+###Get by restaurant id
+GET http://localhost:5005/category/restaurant/1
+Content-Type: application/json
+
+###Delete
+DELETE http://localhost:5005/category/delete/1
+Content-Type: application/json

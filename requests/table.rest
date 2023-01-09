@@ -1,0 +1,38 @@
+###
+//Create Table
+POST http://localhost:5005/table/create/1
+Content-Type: application/json
+
+{
+    "table_no" : 106,
+    "table_type" : "round",
+    "seat_count" : 6
+}
+
+###
+//Edit table
+PUT http://localhost:5005/table/edit/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBsdXh1cnljYXJzLml0IiwiaWF0IjoxNjYyMDkwMzIwLCJleHAiOjE2NjIwOTM5MjB9.eup5_EFQxifrWel7jQSMOjq6XYIT7c2iFVVyUbpxn0A
+Content-Type: application/json
+
+{
+    "table_no" : 1,
+    "table_type" : "square",
+    "seat_count" : 4
+}
+
+###
+//Get All Table
+GET http://localhost:5005/table/list/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBsdXh1cnljYXJzLml0IiwiaWF0IjoxNjYyMDkwMzIwLCJleHAiOjE2NjIwOTM5MjB9.eup5_EFQxifrWel7jQSMOjq6XYIT7c2iFVVyUbpxn0A
+
+###
+//Get Table by id
+GET http://localhost:5005/table/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBsdXh1cnljYXJzLml0IiwiaWF0IjoxNjYyMDkwMzIwLCJleHAiOjE2NjIwOTM5MjB9.eup5_EFQxifrWel7jQSMOjq6XYIT7c2iFVVyUbpxn0A
+
+
+###
+DELETE http://localhost:5005/table/delete/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiYWRtaW5AbHV4dXJ5Y2Fycy5pdCIsImlhdCI6MTY2MDkxODQyOSwiZXhwIjoxNjYwOTIyMDI5fQ.riMbldUorNmyieMkWsWLWNpwknAuJayPy8__gQ5voK8
+

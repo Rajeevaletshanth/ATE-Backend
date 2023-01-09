@@ -1,0 +1,73 @@
+###Add a category
+POST http://localhost:5005/restaurant_settings/create
+Content-Type: application/json
+
+{
+    "website": "website",
+    "email": "email",
+    "phone_no": "phone_no",
+    "restaurant_id": 1,
+    "longitude": "longitude",
+    "latitude": "latitude",
+    "avatar": "avatar",
+    "currency": "currency",
+    "cuisines": "cuisines",
+    "vegetarian": true,
+    "service_type": "service_type",
+    "default_language": "default_language",
+    "opening_hours": "opening_hours",
+    "terms_and_conditions": "terms_and_conditions",
+    "bank_name": "bank_name",
+    "iban": "iban",
+    "delivery_fee": "delivery_fee",
+    "orderlimit_min": "orderlimit_min",
+    "facebook": "facebook",
+    "instagram": "instagram",
+    "pinterest": "pinterest",
+    "vimeo": "vimeo",
+    "youtube": "youtube"
+}
+
+###Get All
+GET http://localhost:5005/restaurant_settings/list
+Content-Type: application/json
+
+###Get by id
+GET http://localhost:5005/restaurant_settings/1
+Content-Type: application/json
+
+
+###Edit a product
+PUT http://localhost:5005/restaurant_settings/edit/1
+Content-Type: application/json
+
+{
+    "website": "website",
+    "email": "email",
+    "phone_no": "phone_no",
+    "restaurant_id": 1,
+    "longitude": "longitude",
+    "latitude": "latitude",
+    "avatar": "avatar",
+    "currency": "currency",
+    "cuisines": "cuisines",
+    "vegetarian": false,
+    "service_type": "service_type",
+    "default_language": "default_language",
+    "opening_hours": "opening_hours",
+    "terms_and_conditions": "terms_and_conditions",
+    "bank_name": "bank_name",
+    "iban": "iban",
+    "delivery_fee": "delivery_fee",
+    "orderlimit_min": "orderlimit_min",
+    "facebook": "facebook",
+    "instagram": "instagram",
+    "pinterest": "pinterest",
+    "vimeo": "vimeo",
+    "youtube": "youtube"
+}
+
+
+###Delete
+DELETE http://localhost:5005/restaurant_settings/delete/1
+Content-Type: application/json

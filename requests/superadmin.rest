@@ -1,0 +1,49 @@
+//Register
+POST http://localhost:5005/superadmin/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiMTY2Nzg5NjA2Nzc5MS1kZWZhdWx0LWF2YXRhci5wbmciLCJ1c2VybmFtZSI6IkxUVyBUZWNoIiwiZW1haWwiOiJhZG1pbjJAbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njc4OTY5ODcsImV4cCI6MTY2NzkwMDU4N30.6H6TWZq_jwzqFs5_NGvoyYbOENBJ-Lb8694-2r4y__Y
+Content-Type: application/json
+
+{
+    "username" : "LTW Tech",
+    "authority" : {"role" : ["superadmin", "admin", "user"]},
+    "email" : "admin@ltwtech.it",
+    "password" : "1234"
+}
+
+###
+//Get All
+GET http://localhost:5005/superadmin/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXZhdGFyIjoiL2ltZy9hdmF0YXJzL3RodW1iLTEuanBnIiwidXNlcm5hbWUiOiJMVFcgVGVjaCIsImVtYWlsIjoiYWRtaW5AbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njk5ODA1NjMsImV4cCI6MTY2OTk4NDE2M30._mvGKxfwMsAAh3EWZDQ5UdQH4iBTiwy2o0V6FKpFibk
+Content-Type: application/json
+
+###
+//Get by id
+GET http://localhost:5005/superadmin/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiMTY2Nzg5NjA2Nzc5MS1kZWZhdWx0LWF2YXRhci5wbmciLCJ1c2VybmFtZSI6IkxUVyBUZWNoIiwiZW1haWwiOiJhZG1pbjJAbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njc4OTY5ODcsImV4cCI6MTY2NzkwMDU4N30.6H6TWZq_jwzqFs5_NGvoyYbOENBJ-Lb8694-2r4y__Y
+Content-Type: application/json
+
+###
+//Get by mail
+POST http://localhost:5005/superadmin/get_bymail
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiMTY2Nzg5NjA2Nzc5MS1kZWZhdWx0LWF2YXRhci5wbmciLCJ1c2VybmFtZSI6IkxUVyBUZWNoIiwiZW1haWwiOiJhZG1pbjJAbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njc4OTY5ODcsImV4cCI6MTY2NzkwMDU4N30.6H6TWZq_jwzqFs5_NGvoyYbOENBJ-Lb8694-2r4y__Y
+Content-Type: application/json
+
+{
+    "email" : "admin2@ltwtech.it"
+}
+
+###
+//Access control
+PUT http://localhost:5005/superadmin/access_control/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiMTY2Nzg5NjA2Nzc5MS1kZWZhdWx0LWF2YXRhci5wbmciLCJ1c2VybmFtZSI6IkxUVyBUZWNoIiwiZW1haWwiOiJhZG1pbjJAbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njc4OTY5ODcsImV4cCI6MTY2NzkwMDU4N30.6H6TWZq_jwzqFs5_NGvoyYbOENBJ-Lb8694-2r4y__Y
+Content-Type: application/json
+
+{
+    "is_deleted" : true
+}
+
+###
+//Delete usere
+DELETE http://localhost:5005/superadmin/delete/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiMTY2Nzg5NjA2Nzc5MS1kZWZhdWx0LWF2YXRhci5wbmciLCJ1c2VybmFtZSI6IkxUVyBUZWNoIiwiZW1haWwiOiJhZG1pbjJAbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njc4OTY5ODcsImV4cCI6MTY2NzkwMDU4N30.6H6TWZq_jwzqFs5_NGvoyYbOENBJ-Lb8694-2r4y__Y
+Content-Type: application/json

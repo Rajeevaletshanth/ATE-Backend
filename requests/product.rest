@@ -1,0 +1,50 @@
+###Add a product
+POST http://localhost:5005/product/create
+Content-Type: application/json
+
+{
+    "name": "Parotta",
+    "category_id": 2,
+    "restaurant_id": 1,
+    "description": "Nothing special",
+    "price": 1.5,
+    "addons": [1,2,3],
+    "vegetarian": true,
+    "avatar": "parotta.jpg"
+}
+
+###Get All
+GET http://localhost:5005/product/list
+Content-Type: application/json
+
+###Get by id
+GET http://localhost:5005/product/1
+Content-Type: application/json
+
+
+###Edit a product
+PUT http://localhost:5005/product/edit/1
+Content-Type: application/json
+
+{
+    "name": "Parotta",
+    "category_id": 2,
+    "restaurant_id": 1,
+    "description": "Nothing special",
+    "price": 1.5,
+    "addons": [1,2,3],
+    "vegetarian": true,
+    "avatar": "parotta.jpg"
+}
+
+###Get by category id
+GET http://localhost:5005/product/category/2
+Content-Type: application/json
+
+###Get by restaurant id
+GET http://localhost:5005/product/restaurant/1
+Content-Type: application/json
+
+###Delete
+DELETE http://localhost:5005/product/delete/1
+Content-Type: application/json

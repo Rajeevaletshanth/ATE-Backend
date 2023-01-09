@@ -1,0 +1,31 @@
+###Add a category
+POST http://localhost:5005/cuisines/create
+Content-Type: application/json
+
+{
+    "name": "Cheese",
+    "price": 5
+}
+
+###Get All
+GET http://localhost:5005/cuisines/list
+Content-Type: application/json
+
+###Get by id
+GET http://localhost:5005/cuisines/1
+Content-Type: application/json
+
+
+###Edit a product
+PUT http://localhost:5005/cuisines/edit/1
+Content-Type: application/json
+
+{
+    "name": "Cheese",
+    "price": 4
+}
+
+
+###Delete
+DELETE http://localhost:5005/cuisines/delete/1
+Content-Type: application/json

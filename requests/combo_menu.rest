@@ -1,0 +1,38 @@
+###Add a category
+POST http://localhost:5005/combo_menu/create
+Content-Type: application/json
+
+{
+    "restaurant_id": 1,
+    "name": "Pizza Fiesta",
+    "description": "Just Pizza",
+    "price": 50,
+    "avatar": "Just-Pizza.jpg",
+    "discount": 20
+}
+
+###Get All
+GET http://localhost:5005/combo_menu/list
+Content-Type: application/json
+
+###Get by id
+GET http://localhost:5005/combo_menu/1
+Content-Type: application/json
+
+
+###Edit a product
+PUT http://localhost:5005/combo_menu/edit/1
+Content-Type: application/json
+
+{
+    "name": "Pizza Fiesta",
+    "description": "Just Pizza",
+    "price": 50,
+    "avatar": "Just-Pizza.jpg",
+    "discount": 20
+}
+
+
+###Delete
+DELETE http://localhost:5005/combo_menu/delete/1
+Content-Type: application/json

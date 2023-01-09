@@ -1,0 +1,83 @@
+//Register
+POST http://localhost:5005/restaurant/register
+Content-Type: application/json
+
+{
+    "name" : "AnyTimeEat",
+    "authority" : {"role" : ["restaurant"]},
+    "phone_no" : "0123456789",
+    "email" : "admin6@ate.it",
+    "password" : "1234",
+    "description": "Time to eat.",
+    "avatar" : "/img/avatars/thumb-1.jpg"
+}
+
+###
+//Login
+POST http://localhost:5005/restaurant/login
+Content-Type: application/json
+
+{
+    "email" : "admin@ate.it",
+    "password" : "1234",
+    "signedIn" : false
+}
+
+###
+//Get Kitchen
+GET http://localhost:5005/restaurant/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBsdXh1cnljYXJzLml0IiwiaWF0IjoxNjYyMDkwMzIwLCJleHAiOjE2NjIwOTM5MjB9.eup5_EFQxifrWel7jQSMOjq6XYIT7c2iFVVyUbpxn0A
+
+
+###
+//Edit Kitchen
+PUT http://localhost:5005/restaurant/edit/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiL2ltZy9hdmF0YXJzL3RodW1iLTEuanBnIiwidXNlcm5hbWUiOiJBbnlUaW1lRWF0IiwiZW1haWwiOiJhZG1pbkBhdGUuaXQiLCJhdXRob3JpdHkiOiJ7XCJyb2xlXCI6W1wicmVzdGF1cmFudFwiXX0iLCJpYXQiOjE2NjkyODkyNzEsImV4cCI6MTY2OTI5Mjg3MX0.-9C1qRT7ugV-mfohgow7j0Cd66vvpU20CC5HWWuSJl4
+Content-Type: application/json
+
+{
+    "name" : "AnyTimeEat",
+    "phone_no" : "0123456789",
+    "description": "Time to eat.",
+    "avatar" : "/img/avatars/thumb-1.jpg"
+}
+
+###
+PUT http://localhost:5005/restaurant/access_control/9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiYWRtaW5AbHV4dXJ5Y2Fycy5pdCIsImlhdCI6MTY2MDg5MDk5NiwiZXhwIjoxNjYwODk0NTk2fQ.JuURSeIhtk2JMcpeB8gdME_1gCiveOWxcsGxEuHd8YA
+Content-Type: application/json
+
+{
+    "is_deleted" : false
+}
+
+###
+DELETE http://localhost:5005/restaurant/delete/12
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoiYWRtaW5AbHV4dXJ5Y2Fycy5pdCIsImlhdCI6MTY2MDkxODQyOSwiZXhwIjoxNjYwOTIyMDI5fQ.riMbldUorNmyieMkWsWLWNpwknAuJayPy8__gQ5voK8
+
+###
+POST http://localhost:5005/restaurant/forgot_password
+Content-Type: application/json
+
+{
+    "email" : "vjvfc2k16@gmail.com"
+}
+
+###
+POST http://localhost:5005/restaurant/reset_password/17/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZqdmZjMmsxNkBnbWFpbC5jb20iLCJpZCI6MTcsImlhdCI6MTY2NzM3ODYyMCwiZXhwIjoxNjY3Mzc4NjgwfQ.16tBQdQu6yhLWBwYslPEoW6cVGkfCO0cz_sCMBoInsI
+Content-Type: application/json
+
+{
+    "password" : "12345"
+}
+
+###
+PUT http://localhost:5005/restaurant/change_password/21
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImF2YXRhciI6IjE2Njc1MzQ0OTg5MTEtZGVmYXVsdC1hdmF0YXIucG5nIiwidXNlcm5hbWUiOiJMVFcgVGVjaCIsImVtYWlsIjoiYWRtaW5AbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njc1NDA5NDAsImV4cCI6MTY2NzU0NDU0MH0.7WzgzSoqvWDm2SUvBsk0n_4qnRCtxiEzxoEtXdXOhcI
+Content-Type: application/json
+
+{
+    "currentPassword" : "12345",
+    "newPassword" : "1234"
+}
+

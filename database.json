@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "qaablsdj",
+    "password": "PuQPpOg4YuNZ4i1xBkeNcQNxW-kaNPQD", 
+    "host": "baasu.db.elephantsql.com",
+    "database": "qaablsdj",
+    "port": "5432"
+  }
+}
