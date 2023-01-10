@@ -41,3 +41,25 @@ CREATE TABLE IF NOT EXISTS public.favourite
     created_at TIMESTAMP,
     updated_at TIMESTAMP 
 );
+
+CREATE TABLE IF NOT EXISTS public.top_brands
+(
+    id SERIAL PRIMARY KEY,
+    restaurant_id INTEGER UNIQUE NOT NULL,
+    top_brand BOOLEAN default true,
+    is_deleted BOOLEAN DEFAULT false,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP 
+);
+
+CREATE TABLE IF NOT EXISTS public.top_offers
+(
+    id SERIAL PRIMARY KEY,
+    item_id INTEGER NOT NULL,
+    type CHARACTER VARYING NOT NULL,
+    top_offer BOOLEAN default true,
+    is_deleted BOOLEAN DEFAULT false,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    UNIQUE (item_id, type) 
+);

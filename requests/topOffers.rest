@@ -1,0 +1,22 @@
+###
+//Get All
+POST http://localhost:5005/top_offers/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXZhdGFyIjoiL2ltZy9hdmF0YXJzL3RodW1iLTEuanBnIiwidXNlcm5hbWUiOiJMVFcgVGVjaCIsImVtYWlsIjoiYWRtaW5AbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njk5ODA1NjMsImV4cCI6MTY2OTk4NDE2M30._mvGKxfwMsAAh3EWZDQ5UdQH4iBTiwy2o0V6FKpFibk
+Content-Type: application/json
+
+{
+    "item_id" : 14,
+    "type": "combo menu"
+}
+
+###
+//Get All
+GET http://localhost:5005/top_offers/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXZhdGFyIjoiL2ltZy9hdmF0YXJzL3RodW1iLTEuanBnIiwidXNlcm5hbWUiOiJMVFcgVGVjaCIsImVtYWlsIjoiYWRtaW5AbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njk5ODA1NjMsImV4cCI6MTY2OTk4NDE2M30._mvGKxfwMsAAh3EWZDQ5UdQH4iBTiwy2o0V6FKpFibk
+Content-Type: application/json
+
+###
+//Get All
+DELETE http://localhost:5005/top_offers/remove/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXZhdGFyIjoiL2ltZy9hdmF0YXJzL3RodW1iLTEuanBnIiwidXNlcm5hbWUiOiJMVFcgVGVjaCIsImVtYWlsIjoiYWRtaW5AbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJzdXBlcmFkbWluXCIsXCJhZG1pblwiLFwidXNlclwiXX0iLCJpYXQiOjE2Njk5ODA1NjMsImV4cCI6MTY2OTk4NDE2M30._mvGKxfwMsAAh3EWZDQ5UdQH4iBTiwy2o0V6FKpFibk
+Content-Type: application/json
