@@ -2,17 +2,17 @@ require("dotenv").config();
 const logger = require("../config/logger");
 const Table = require("../models/table");
 const TableReservation = require("../models/tableReservation");
-
+const { Op } = require("sequelize");
 const QRCode = require("qrcode");
+const Order = require("../models/order");
 
 module.exports = {
+
   create: async (req, res) => {
 
     const {restaurant_id} = req.params;
     const table_ids = req.body.table_ids;
-    const customer_name = req.body.customer_name;
-    const customer_phone = req.body.customer_phone;
-    const customer_email = req.body.customer_email;
+    const user_id = req.body.user_id;
     const guests_count = req.body.guests_count;
     const reservation_date = req.body.reservation_date;
     const reservation_from = req.body.reservation_from;
@@ -22,9 +22,7 @@ module.exports = {
     let data = {
       restaurant_id: restaurant_id,
       table_ids: JSON.stringify(table_ids),
-      customer_name: customer_name,
-      customer_phone: customer_phone,
-      customer_email: customer_email,
+      user_id: user_id,
       guests_count: guests_count,
       reservation_date: reservation_date,
       reservation_from: reservation_from,
@@ -39,9 +37,7 @@ module.exports = {
       const newReservation = new TableReservation({
         restaurant_id:restaurant_id,
         table_ids: JSON.stringify(table_ids),
-        customer_name: customer_name,
-        customer_phone: customer_phone,
-        customer_email: customer_email,
+        user_id: user_id,
         guests_count: guests_count,
         reservation_date: reservation_date,
         reservation_from: reservation_from,
@@ -61,93 +57,123 @@ module.exports = {
             res.json({response: "success", message: "Successfully reserved.", qrcode: code})
           }
         })
-        
+
       }else{
         res.json({response: "error", message: "Reservation failure."})
       }
     } catch (error) {
       res.send({ response: "error", message: error.message });
     }
+},
+
+  getAll: async (req, res) => {
+    const {restaurant_id} = req.params;
+
+    try {
+      await TableReservation.findAll({
+        where:{
+          restaurant_id: restaurant_id,
+          reservation_from:{
+            [Op.gte]: new Date()
+          }
+        }
+      }).then((response) => {
+          res.json({response: "success", allReservations: response})
+      })
+    } catch (error) {
+      res.json({response: "error", data: error.message})
+    }
+    
   },
 
-  // edit : async(req, res) => {
-  //     const  { id } = req.params;
-  //     const table_no = req.body.table_no;
-  //     const table_type = req.body.table_type;
-  //     const seat_count = req.body.seat_count;
+  checkAvailability: async (req, res) => {
+    const {restaurant_id} = req.params;
+    const reservation_date = req.body.reservation_date;
+    const reservation_from = req.body.reservation_from;
 
-  //     try {
-  //         const newTable = await Table.update({
-  //             table_no: table_no,
-  //             table_type: table_type,
-  //             seat_count: seat_count
-  //         },
-  //         {
-  //             where: {
-  //                 id: id
-  //             }
-  //         })
+    try {
+      await TableReservation.findAll({
+        where:{
+          restaurant_id: restaurant_id,
+          reservation_date: reservation_date,
+          reservation_from:{
+            [Op.lte]: new Date(reservation_from)
+          },
+          reservation_to:{
+            [Op.gt]: new Date(reservation_from)
+          }
+        }
+      }).then(async(response) => {
+        if(response.length > 0){
+          let array = [];
+          response.map((item) => {
+            array = [...array, ...JSON.parse(item.table_ids)]
+          })
+          let bookedTables = array.map(id => ({table_no: id}));
+          await Table.findAll({
+            where:{
+              restaurant_id: restaurant_id,
+              [Op.not] : bookedTables
+            }
+          }).then((tab_response) =>{
+            if(tab_response.length > 0){
+              res.json({response: "success", message: "Available", tables: tab_response})
+            }else{
+              res.json({response: "error", message: "No available seats left."})
+            }
+          })
+        }else{
+          await Table.findAll({
+            where:{
+              restaurant_id: restaurant_id
+            }
+          }).then((tab_response) =>{
+            if(tab_response.length > 0){
+              res.json({response: "success", message: "Available", tables: tab_response})
+            }else{
+              res.json({response: "error", message: "No available seats left."})
+            }
+          })
+        }
+      })
+    } catch (error) {
+      res.json({response: "error", data: error.message})
+    }
+  },
 
-  //         if(newTable[0] > 0)
-  //             res.send({response: "success", message : "Table updated successfully."});
-  //         else
-  //             res.send({response : "error", message : "Sorry, failed to update table!"});
-  //     } catch(error) {
-  //         res.send({response : "error", message : error.message})
-  //     }
-  // },
+  getByid: async (req, res) => {
+    const {id} = req.params;
+    try {
+        const tableReservation = await TableReservation.findOne({
+            where: {
+                id: id
+            }
+        })
+        if(table)
+            res.send({"response": "success", data:tableReservation})
+        else
+            res.send({response: "error", message : "No reservations found!"})
+    } catch(error) {
+        res.send({response: "error", "message" : error.message});
+    }
+  },
 
-  // getAll: async (req, res) => {
-  //     const {restaurant_id} = req.params;
+  delete : async(req, res) => {
+      const  { id } = req.params;
 
-  //     try{
-  //         const table = await Table.findAll({
-  //             where:{
-  //                 restaurant_id:restaurant_id
-  //             }
-  //         })
-  //         if(table.length > 0){
-  //             res.send({"response": "success", data: table})
-  //         }else{
-  //             res.send({response: "error", message : "No table found!"})
-  //         }
-  //     }catch(error) {
-  //         res.send({response: "error", message : error.message});
-  //     }
-  // },
+      try {
+          const tableReservation = await TableReservation.destroy({
+              where: {
+                  id: id
+              }
+          })
+          if(tableReservation > 0)
+              res.send({response: "success", message : "Successfully deleted."})
+          else
+              res.send({response : "error", message : "Sorry, failed to delete!"})
+      } catch(error) {
+          res.send({response: "error", message : error.message});
+      }
+  },
 
-  // getByid: async (req, res) => {
-  //     const {id} = req.params;
-  //     try {
-  //         const table = await Table.findOne({
-  //             where: {
-  //                 id: id
-  //             }
-  //         })
-  //         if(table)
-  //             res.send({"response": "success", data:table})
-  //         else
-  //             res.send({response: "error", message : "Table not found"})
-  //     } catch(error) {
-  //         res.send({response: "error", "message" : error.message});
-  //     }
-  // },
-
-  // delete : async(req, res) => {
-  //     const  { id } = req.params;
-
-  //     try {
-  //         const table = await Table.destroy({
-  //             where: {
-  //                 id: id
-  //             }
-  //         })
-  //         if(table > 0)
-  //             res.send({response: "success", message : "Successfully deleted."})
-  //         else
-  //             res.send({response : "error", message : "Sorry, failed to delete!"})
-  //     } catch(error) {
-  //         res.send({response: "error", message : error.message});
-  //     }
-  // },
 };

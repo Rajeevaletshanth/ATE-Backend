@@ -19,18 +19,9 @@ const TableReservation = database.define('table_reservation', {
         allowNull: false
     },
 
-    customer_name: {
-        type: Sequelize.STRING,
+    user_id: {
+        type: Sequelize.INTEGER,
         allowNull: false
-    },
-
-    customer_phone: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-
-    customer_email: {
-        type: Sequelize.STRING
     },
 
     guests_count: {
@@ -44,12 +35,12 @@ const TableReservation = database.define('table_reservation', {
     },
 
     reservation_from: {
-        type: Sequelize.TIME,
+        type: Sequelize.DATE,
         allowNull: false
     },
 
     reservation_to: {
-        type: Sequelize.TIME,
+        type: Sequelize.DATE,
         allowNull: false
     },
 

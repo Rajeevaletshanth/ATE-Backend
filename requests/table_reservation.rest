@@ -5,12 +5,35 @@ Content-Type: application/json
 
 {
       "table_ids": [1,4,5],
-      "customer_name": "Rajeev",
-      "customer_phone": "0714567892",
-      "customer_email": "vjvfc2k16@gmail.com",
+      "user_id": 1,
       "guests_count": 10,
       "reservation_date": "2023-01-25",
-      "reservation_from": "20:00",
-      "reservation_to": "21:00",
+      "reservation_from": "20:00:00",
+      "reservation_to": "21:00:00",
       "note": "Birthday Party"
 }
+
+###
+//Get All
+GET http://localhost:5005/table_reservation/list/1
+Content-Type: application/json
+
+###
+//Check Availability
+POST http://localhost:5005/table_reservation/check_availability/1
+Content-Type: application/json
+
+{
+      "reservation_date": "2023-01-25",
+      "reservation_from" : "2023-01-25 22:30:00"
+}
+
+###
+//Get by id
+GET http://localhost:5005/table_reservation/1
+Content-Type: application/json
+
+###
+//Cancel reservation
+DELETE http://localhost:5005/table_reservation/cancel/1
+Content-Type: application/json

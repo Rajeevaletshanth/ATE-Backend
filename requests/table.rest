@@ -4,7 +4,7 @@ POST http://localhost:5005/table/create/1
 Content-Type: application/json
 
 {
-    "table_no" : 106,
+    "table_no" : 1,
     "table_type" : "round",
     "seat_count" : 6
 }
