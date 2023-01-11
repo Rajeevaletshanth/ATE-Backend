@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const logger = require('../config/logger');
 // const Favourite = require('../models/favourite');
 const TopBrands = require('../models/topBrands')
-const Kitchen = require('../models/kitchen')
+const Restaurant = require('../models/restaurant')
 
 
 module.exports = {
@@ -36,7 +36,7 @@ module.exports = {
                 attributes:['restaurant_id']
             }).then(async(response) => {
                 const restaurantArr = response.map(({restaurant_id: id}) => ({id}))
-                await Kitchen.findAll({
+                await Restaurant.findAll({
                     where:{
                         [Op.or]: restaurantArr
                     }

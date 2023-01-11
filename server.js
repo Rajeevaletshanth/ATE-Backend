@@ -133,6 +133,8 @@ const tableReservationRoute = require('./routes/tableReservationRoute');
 const userRoute = require('./routes/userRoute');
 const orderRoute = require('./routes/orderRoute');
 const favouriteRoute = require('./routes/favouriteRoute');
+const topBrandsRoute = require('./routes/topBrandsRoute');
+const topOfferRoute = require('./routes/topOfferRoute');
 
 app.use('/admin', adminRoute);
 app.use('/superadmin', superadminRoute);
@@ -155,6 +157,8 @@ app.use('/table_reservation', tableReservationRoute);
 app.use('/user', userRoute);
 app.use('/orders', orderRoute);
 app.use('/favourites', favouriteRoute);
+app.use('/top_brands', topBrandsRoute);
+app.use('/top_offers', topOfferRoute);
 
 // app.use(authenticateToken, uploadRoute);
 app.use(uploadRoute);
