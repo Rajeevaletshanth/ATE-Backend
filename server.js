@@ -128,7 +128,7 @@ const cuisinesRoute = require('./routes/cuisinesRoute');
 const deliveryPeopleRoute = require('./routes/deliveryPeopleRoute');
 const restaurantSettingsRoute = require('./routes/restaurantSettingsRoute');
 const tableRoute = require('./routes/tableRoute');
-const tableReservationRoute = require('./routes/tableReservationRoute');
+// const tableReservationRoute = require('./routes/tableReservationRoute');
 
 const userRoute = require('./routes/userRoute');
 const orderRoute = require('./routes/orderRoute');
@@ -152,7 +152,7 @@ app.use('/cuisines', cuisinesRoute);
 app.use('/delivery_people', deliveryPeopleRoute);
 app.use('/restaurant_settings', restaurantSettingsRoute);
 app.use('/table', tableRoute);
-app.use('/table_reservation', tableReservationRoute);
+// app.use('/table_reservation', tableReservationRoute);
 
 app.use('/user', userRoute);
 app.use('/orders', orderRoute);
@@ -223,7 +223,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-server.listen(process.env.PORT, () => console.log(`Real Estate Tokenization engine on live on port ${process.env.PORT}!`))
+app.listen(process.env.PORT, () => console.log(`Real Estate Tokenization engine on live on port ${process.env.PORT}!`))
 
 module.exports = app;
 

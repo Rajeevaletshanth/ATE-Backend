@@ -10,6 +10,7 @@ router.get('/:id', controller.getByid)
 router.get('/all_orders/:user_id', controller.getOrdersByUserId)
 router.get('/all_restaurant_orders/:restaurant_id', controller.getAllrestarantOrders)
 router.get('/get_status/:id', controller.getStatusByid)
+router.delete('/archive/:id', controller.archive)
 router.delete('/delete/:id', controller.delete)
 
 

@@ -1,10 +1,10 @@
 {
   "dev": {
     "driver": "pg",
-    "user": "postgres",
-    "password": "kff1XbDtL1PxUTJtgWjX", 
-    "host": "containers-us-west-127.railway.app",
-    "database": "railway",
-    "port": "7755"
+    "user": "root",
+    "password": "gBtny7LdHaVYbQxeigGkK3PolEztfeCc", 
+    "host": "dpg-cf0jv9p4reb56qk6hps0-a.oregon-postgres.render.com",
+    "database": "atedb_anh7",
+    "port": "5432"
   }
 }

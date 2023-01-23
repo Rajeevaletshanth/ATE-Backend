@@ -90,6 +90,7 @@ module.exports = {
     const {restaurant_id} = req.params;
     const reservation_date = req.body.reservation_date;
     const reservation_from = req.body.reservation_from;
+    const reservation_to = req.body.reservation_to;
 
     try {
       await TableReservation.findAll({
@@ -97,14 +98,16 @@ module.exports = {
           restaurant_id: restaurant_id,
           reservation_date: reservation_date,
           reservation_from:{
-            [Op.lte]: new Date(reservation_from)
+            [Op.lte]: new Date(reservation_from),
+            // [Op.gt]: new Date(reservation_to)
           },
           reservation_to:{
-            [Op.gt]: new Date(reservation_from)
+            [Op.gt]: new Date(reservation_from),
+            // [Op.lte]: new Date(reservation_to)
           }
         }
       }).then(async(response) => {
-        if(response.length > 0){
+        if(response.length > 0){        
           let array = [];
           response.map((item) => {
             array = [...array, ...JSON.parse(item.table_ids)]

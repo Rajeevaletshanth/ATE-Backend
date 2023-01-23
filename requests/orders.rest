@@ -38,8 +38,7 @@ Content-Type: application/json
             ] 
         }
     ],
-    "order_date" : "08/12/2022",
-    "order_time" : "10:00",
+    "order_time" : "18:00",
     "delivery_fee" : 25,
     "total_amount" : 124.00,
     "status" : "pending"
@@ -64,11 +63,15 @@ GET http://localhost:5005/orders/all_orders/1
 
 ###
 #Get all orders by restaurant id
-GET http://localhost:5005/orders/all_restaurant_orders/13
+GET http://localhost:5005/orders/all_restaurant_orders/38
 
 ###
 #Get status by user id
 GET http://localhost:5005/orders/get_status/5
+
+###
+#Archive order
+DELETE http://localhost:5005/orders/archive/13
 
 ###
 #Delete order

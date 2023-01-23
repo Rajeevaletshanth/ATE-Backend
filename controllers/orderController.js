@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const logger = require('../config/logger');
 const Order = require('../models/order');
 const Product = require('../models/product');
+const User = require('../models/user')
 const Addons = require('../models/addons');
 const { response } = require('express');
 
@@ -13,19 +14,17 @@ module.exports = {
         const restaurant_id = req.body.restaurant_id;
         const user_id = req.body.user_id;
         const products = JSON.stringify(req.body.products);
-        const order_date = req.body.order_date;
         const order_time = req.body.order_time;
         const delivery_fee = req.body.delivery_fee;
         const total_amount = req.body.total_amount;
         const status = req.body.status;
 
         try{
-
             const newOrder = new Order({
                 restaurant_id: restaurant_id,
                 user_id: user_id,
                 products:products,
-                order_date: order_date,
+                order_date: new Date().toISOString().slice(0,10),
                 order_time: order_time,
                 delivery_fee: delivery_fee,
                 total_amount: total_amount,
@@ -59,9 +58,9 @@ module.exports = {
                     }
                 })
             if (order[0] > 0)
-                res.send({ "response": "success", data: `Status updated to ${status}` })
+                res.send({ "response": "success", message: `Status updated to ${status}` })
             else
-                res.send({ response: "error", "message": "Order not found!" })
+                res.send({ response: "error", message: "Order not found!" })
         } catch (error) {
             res.send({ response: "error", message: error.message })
         }
@@ -120,7 +119,9 @@ module.exports = {
         try {
             const order = await Order.findAll({
                 where: {
-                    restaurant_id: restaurant_id
+                    restaurant_id: restaurant_id,
+                    order_date: new Date().toISOString(),
+                    is_deleted: false
                 },
                 attributes: ['id']
             })
@@ -141,10 +142,10 @@ module.exports = {
                                     where:{
                                         [Op.or] : productArr
                                     }
-                                }).then((resp) => {
+                                }).then(async(resp) => {
                                     if(resp.length > 0){
                                         let items = [];
-                                        resp.map((item, key) => {
+                                        resp.map(async(item, key) => {
                                             let quantity = order_dets[key].quantity
                                             let addons = order_dets[key].addons
                                             items[key] = {
@@ -153,9 +154,20 @@ module.exports = {
                                                     addons : addons
                                             }
                                         })
+
+                                        let user_details = {};
+                                        await User.findOne({
+                                            where:{
+                                                id: order.user_id
+                                            }
+                                        }).then((user_resp) => user_details = user_resp)
+
                                         results[key] = {
                                             order_id: order.id,
-                                            user_id: order.user_id,
+                                            customer_id: order.user_id,
+                                            customer_name: user_details? user_details.username : "",
+                                            customer_phone: user_details? user_details.phone_no : "",
+                                            customer_email: user_details? user_details.email : "",
                                             restaurant_id: order.restaurant_id,
                                             order_date: order.order_date,
                                             order_time: order.order_time,
@@ -260,12 +272,31 @@ module.exports = {
         }
     },
 
+    archive: async (req, res) => {
+        const { id } = req.params;
+
+        try {
+            const order = await Order.update({
+                is_deleted: true
+            },
+                {
+                    where: {
+                        id: id
+                    }
+                })
+            if (order[0] > 0)
+                res.send({ "response": "success", message: `Order archived.` })
+            else
+                res.send({ response: "error", message: "Order not found!" })
+        } catch (error) {
+            res.send({ response: "error", message: error.message })
+        }
+    },
 
     delete : async(req, res) => {
         const  { id } = req.params;
 
         try {
-            console.log("sds")
             const order = await Order.destroy({
                 where: {
                     id: id
