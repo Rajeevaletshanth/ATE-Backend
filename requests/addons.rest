@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ###Get All
-GET http://localhost:5005/addons/list
+GET http://localhost:5005/addons/list/1
 Content-Type: application/json
 
 ###Get by id

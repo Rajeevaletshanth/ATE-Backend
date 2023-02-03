@@ -33,9 +33,13 @@ module.exports = {
     },
 
     getAll: async (req, res) => {
-
+        const { restaurant_id } = req.params
         try{
-            const addons = await Addons.findAll()
+            const addons = await Addons.findAll({
+                where:{
+                    restaurant_id: restaurant_id
+                }
+            })
             if(addons.length > 0){
                 res.send({"response": "success", addons})
             }else{

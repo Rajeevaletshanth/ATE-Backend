@@ -80,7 +80,10 @@ module.exports = {
             const table = await Table.findAll({
                 where:{
                     restaurant_id:restaurant_id
-                }
+                },
+                order:[
+                    ['table_no', 'ASC']
+                ]
             })
             if(table.length > 0){
                 res.send({"response": "success", data: table})

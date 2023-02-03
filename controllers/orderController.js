@@ -14,10 +14,16 @@ module.exports = {
         const restaurant_id = req.body.restaurant_id;
         const user_id = req.body.user_id;
         const products = JSON.stringify(req.body.products);
-        const order_time = req.body.order_time;
+        // const order_time = req.body.order_time;
         const delivery_fee = req.body.delivery_fee;
         const total_amount = req.body.total_amount;
         const status = req.body.status;
+
+        //Current Time
+        const currentTime = new Date();
+        const hours = currentTime.getHours().toString().padStart(2, "0");
+        const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+        const time = `${hours}:${minutes}`;
 
         try{
             const newOrder = new Order({
@@ -25,7 +31,7 @@ module.exports = {
                 user_id: user_id,
                 products:products,
                 order_date: new Date().toISOString().slice(0,10),
-                order_time: order_time,
+                order_time: time,
                 delivery_fee: delivery_fee,
                 total_amount: total_amount,
                 status: status

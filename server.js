@@ -91,7 +91,7 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); //removing public folder form routes acessing
-//app.use(express.static('/uploads/'));
+
 /*app.use('/resources',express.static(__dirname + '/images'));*/
 // ip request
 app.use(requestIp.mw())
@@ -128,7 +128,7 @@ const cuisinesRoute = require('./routes/cuisinesRoute');
 const deliveryPeopleRoute = require('./routes/deliveryPeopleRoute');
 const restaurantSettingsRoute = require('./routes/restaurantSettingsRoute');
 const tableRoute = require('./routes/tableRoute');
-// const tableReservationRoute = require('./routes/tableReservationRoute');
+const tableReservationRoute = require('./routes/tableReservationRoute');
 
 const userRoute = require('./routes/userRoute');
 const orderRoute = require('./routes/orderRoute');
@@ -152,7 +152,7 @@ app.use('/cuisines', cuisinesRoute);
 app.use('/delivery_people', deliveryPeopleRoute);
 app.use('/restaurant_settings', restaurantSettingsRoute);
 app.use('/table', tableRoute);
-// app.use('/table_reservation', tableReservationRoute);
+app.use('/table_reservation', tableReservationRoute);
 
 app.use('/user', userRoute);
 app.use('/orders', orderRoute);
@@ -173,9 +173,13 @@ app.get('/download/:filename', authenticateToken, (req, res) => {
 app.get('/getAvatar/:filename', (req, res) => {
     const { filename } = req.params;
     var file = __dirname + '/public/uploads/' + filename;
-    
-    console.log(file)
     res.download(file);
+})
+
+app.get('/viewImage/:filename', (req, res) => {
+    const { filename } = req.params;
+    var file = __dirname + '/public/uploads/' + filename;
+    res.sendFile(file);
 })
 
 

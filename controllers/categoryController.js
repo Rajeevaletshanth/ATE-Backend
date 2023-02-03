@@ -79,13 +79,13 @@ module.exports = {
 
     //get category with restaurant id
     getByRestaurantId: async (req, res) => {
-        const id = req.params.id
+        const restaurant_id = req.params.restaurant_id
 
         try{
 
             const category = await Category.findAll({
                 where: {
-                    restaurant_id: id
+                    restaurant_id: restaurant_id
                 }
             })
             if (category.length > 0)

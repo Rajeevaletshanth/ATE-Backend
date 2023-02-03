@@ -424,3 +424,8 @@
   message: 'admin@ltwtech.it : Wrong Email/ Password combination!',
   timestamp: '2022-12-08T13:38:19.859Z'
 }
+{
+  level: 'error',
+  message: 'getsoftc@outlook.com : Wrong Email/ Password combination!',
+  timestamp: '2023-01-23T07:11:57.011Z'
+}

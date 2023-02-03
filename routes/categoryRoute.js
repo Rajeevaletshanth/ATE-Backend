@@ -11,6 +11,6 @@ router.get('/:id', controller.getByid)
 router.delete('/delete/:id', controller.delete)
 router.put('/edit/:id', controller.edit)
 
-router.get('/restaurant/:id', controller.getByRestaurantId);
+router.get('/restaurant/:restaurant_id', controller.getByRestaurantId);
 
 module.exports = router;

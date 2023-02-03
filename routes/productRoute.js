@@ -10,10 +10,10 @@ router.get('/:id', controller.getByid)
 router.delete('/delete/:id', controller.delete)
 router.put('/edit/:id', controller.edit)
 
-router.get('/category/:id', controller.getProductByCategoryid)
+router.get('/category/:category_id', controller.getProductByCategoryid)
 // router.get('/combo/:id', controller.getComboMenuPack)
 
-router.get('/restaurant/:id', controller.getProductByRestaurantId)
+router.get('/restaurant/:restaurant_id', controller.getProductByRestaurantId)
 
 
 module.exports = router;

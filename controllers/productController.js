@@ -72,11 +72,11 @@ module.exports = {
 
     //get product by category id
     getProductByCategoryid: async (req, res) => {
-        const id = req.params.id
+        const category_id = req.params.category_id
         try {
             const product = await Product.findAll({
                 where: {
-                    category_id: id
+                    category_id: category_id
                 }
             })
 
@@ -91,11 +91,11 @@ module.exports = {
     },
 
     getProductByRestaurantId: async (req, res) => {
-        const id = req.params.id
+        const restaurant_id = req.params.restaurant_id
         try {
             const product = await Product.findAll({
                 where: {
-                    restaurant_id: id
+                    restaurant_id: restaurant_id
                 }
             })
 

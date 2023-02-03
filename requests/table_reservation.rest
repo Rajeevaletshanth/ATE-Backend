@@ -15,8 +15,12 @@ Content-Type: application/json
 
 ###
 //Get All
-GET http://localhost:5005/table_reservation/list/1
+POST http://localhost:5005/table_reservation/list/1
 Content-Type: application/json
+
+{
+      "date" : "2023-01-02"
+}
 
 ###
 //Check Availability

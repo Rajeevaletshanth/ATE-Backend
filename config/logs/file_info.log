@@ -1858,3 +1858,38 @@
   message: 'ssdvs@hsbfis.com logged in...',
   timestamp: '2023-01-21T05:19:59.131Z'
 }
+{
+  level: 'error',
+  message: 'getsoftc@outlook.com : Wrong Email/ Password combination!',
+  timestamp: '2023-01-23T07:11:57.009Z'
+}
+{
+  level: 'info',
+  message: 'getsoftc@outlook.com logged in...',
+  timestamp: '2023-01-23T07:12:01.196Z'
+}
+{
+  level: 'info',
+  message: 'getsoftc@outlook.com logged in...',
+  timestamp: '2023-01-25T04:02:47.030Z'
+}
+{
+  level: 'info',
+  message: 'getsoftc@outlook.com logged in...',
+  timestamp: '2023-01-25T04:06:41.346Z'
+}
+{
+  level: 'info',
+  message: 'getsoftc@outlook.com logged in...',
+  timestamp: '2023-01-29T04:42:13.938Z'
+}
+{
+  level: 'info',
+  message: 'getsoftc@outlook.com logged in...',
+  timestamp: '2023-01-31T07:36:55.349Z'
+}
+{
+  level: 'info',
+  message: 'admin@hp.com logged in...',
+  timestamp: '2023-02-03T02:38:03.121Z'
+}
