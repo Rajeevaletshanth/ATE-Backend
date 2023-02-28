@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "restaurant_id": 1,
-    "name": "Cheese",
+    "name": "Butter",
     "price": 5
 }
 
