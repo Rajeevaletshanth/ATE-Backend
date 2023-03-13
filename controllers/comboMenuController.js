@@ -51,6 +51,23 @@ module.exports = {
         }
     },
 
+    getAllbyRestaurantId: async (req, res) => {
+        const id = req.params.restaurant_id
+        try {
+            const comboMenu = await ComboMenu.findAll({
+                where: {
+                    restaurant_id: id
+                }
+            })
+            if (comboMenu.length > 0)
+                res.send({ "response": "success", comboMenu })
+            else
+                res.send({ "response": "error", "message": "category doesn't exist" })
+        } catch (error) {
+            res.send({ "response": "error", "message": error.message });
+        }
+    },
+
     getByid: async (req, res) => {
         const id = req.params.id
         try {

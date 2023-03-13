@@ -15,6 +15,10 @@ Content-Type: application/json
 GET http://localhost:5005/combo_menu/list
 Content-Type: application/json
 
+###Get All from one restaurant
+GET http://localhost:5005/combo_menu/list/1
+Content-Type: application/json
+
 ###Get by id
 GET http://localhost:5005/combo_menu/1
 Content-Type: application/json
@@ -28,7 +32,7 @@ Content-Type: application/json
     "name": "Pizza Fiesta",
     "description": "Just Pizza",
     "price": 50,
-    "avatar": "Just-Pizza.jpg",
+    "avatar": "1670403701815-LPH62.jpg",
     "discount": 20
 }
 

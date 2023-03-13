@@ -1913,3 +1913,93 @@
   message: 'admin@ltwtech.it logged in...',
   timestamp: '2023-02-21T02:55:28.339Z'
 }
+{
+  level: 'info',
+  message: 'bbgnation@gmail.com logged in...',
+  timestamp: '2023-03-10T03:48:07.796Z'
+}
+{
+  level: 'info',
+  message: 'bbgnation@gmail.com logged in...',
+  timestamp: '2023-03-10T08:42:26.593Z'
+}
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-03-10T08:43:25.072Z'
+}
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-03-10T08:45:03.480Z'
+}
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-03-10T09:43:50.959Z'
+}
+{
+  level: 'error',
+  message: 'admin@ltwtech.it : Wrong Email/ Password combination!',
+  timestamp: '2023-03-10T09:50:48.970Z'
+}
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-03-10T09:50:51.148Z'
+}
+{
+  level: 'error',
+  message: 'admin@ltwtech.it : Wrong Email/ Password combination!',
+  timestamp: '2023-03-10T10:23:32.188Z'
+}
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-03-10T10:23:34.388Z'
+}
+{
+  level: 'info',
+  message: 'bbgnation@gmail.com logged in...',
+  timestamp: '2023-03-10T10:30:23.646Z'
+}
+{
+  level: 'info',
+  message: 'bbqnation@gmail.com logged in...',
+  timestamp: '2023-03-10T10:40:12.634Z'
+}
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-03-11T13:03:32.852Z'
+}
+{
+  level: 'info',
+  message: 'burgerking@gmail.com logged in...',
+  timestamp: '2023-03-11T13:06:48.114Z'
+}
+{
+  level: 'info',
+  message: 'user@ltwtech.it logged in...',
+  timestamp: '2023-03-13T03:16:49.225Z'
+}
+{
+  level: 'info',
+  message: 'user@ltwtech.it logged in...',
+  timestamp: '2023-03-13T03:18:36.040Z'
+}
+{
+  level: 'error',
+  message: 'user@ltwtech.it : Wrong Email/ Password combination!',
+  timestamp: '2023-03-13T03:41:34.625Z'
+}
+{
+  level: 'info',
+  message: 'user@ltwtech.it logged in...',
+  timestamp: '2023-03-13T03:41:41.562Z'
+}
+{
+  level: 'info',
+  message: 'user@ltwtech.it logged in...',
+  timestamp: '2023-03-13T04:27:31.541Z'
+}

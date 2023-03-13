@@ -3,8 +3,7 @@ POST http://localhost:5005/cuisines/create
 Content-Type: application/json
 
 {
-    "name": "Cheese",
-    "price": 5
+    "name": "Mexican"
 }
 
 ###Get All
@@ -21,8 +20,8 @@ PUT http://localhost:5005/cuisines/edit/1
 Content-Type: application/json
 
 {
-    "name": "Cheese",
-    "price": 4
+    "name": "Italian",
+    "avatar": "1678173221942-CanadianFood.png"
 }
 
 

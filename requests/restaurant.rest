@@ -30,6 +30,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
 
 
 ###
+//All Kitchen
+GET http://localhost:5005/restaurant/list/all_kitchen
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBsdXh1cnljYXJzLml0IiwiaWF0IjoxNjYyMDkwMzIwLCJleHAiOjE2NjIwOTM5MjB9.eup5_EFQxifrWel7jQSMOjq6XYIT7c2iFVVyUbpxn0A
+
+
+###
 //Edit Kitchen
 PUT http://localhost:5005/restaurant/edit/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiL2ltZy9hdmF0YXJzL3RodW1iLTEuanBnIiwidXNlcm5hbWUiOiJBbnlUaW1lRWF0IiwiZW1haWwiOiJhZG1pbkBhdGUuaXQiLCJhdXRob3JpdHkiOiJ7XCJyb2xlXCI6W1wicmVzdGF1cmFudFwiXX0iLCJpYXQiOjE2NjkyODkyNzEsImV4cCI6MTY2OTI5Mjg3MX0.-9C1qRT7ugV-mfohgow7j0Cd66vvpU20CC5HWWuSJl4

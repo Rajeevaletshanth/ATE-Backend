@@ -19,7 +19,7 @@ POST http://localhost:5005/user/login
 Content-Type: application/json
 
 {
-    "email" : "user1@ltwtech.it",
+    "email" : "user@ltwtech.it",
     "password" : "1234",
     "signedIn" : false
 }
