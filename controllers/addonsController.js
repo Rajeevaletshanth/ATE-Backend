@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { Op } = require("sequelize");
 const logger = require('../config/logger');
 const Addons = require('../models/addons');
 
@@ -41,12 +42,12 @@ module.exports = {
                 }
             })
             if(addons.length > 0){
-                res.send({"response": "success", addons})
+                res.send({response: "success", addons})
             }else{
-                res.send({"response": "error", "message" : "addons doesn't exist"})
+                res.send({response: "error", "message" : "addons doesn't exist"})
             }
         }catch(error) {
-            res.send({"response": "error", "message" : "Undefined error occured!"});
+            res.send({response: "error", "message" : error.message});
         }
     },
 
@@ -59,12 +60,31 @@ module.exports = {
                 }
             })
             if(addons.length > 0)
-                res.send({"response": "success", addons})
+                res.send({response: "success", addons})
             else
-                res.send({"response": "error", "message" : "addons doesn't exist"})
+                res.send({response: "error", "message" : "addons doesn't exist"})
         } catch(error) {
-            res.send({"response": "error", "message" : "Undefined error occured!"});
+            res.send({response: "error", "message" : error.message});
         }
+    },
+
+    getByMultipleIds : async (req, res) => {
+            const {ids} = req.body 
+            try {
+              const addons = await Addons.findAll({
+                where: {
+                  id: {
+                    [Op.in]: ids
+                  }
+                }
+              });
+              if (addons.length > 0)
+                res.send({ response: "success", addons });
+              else
+                res.send({ response: "error", message: "addons don't exist" });
+            } catch (error) {
+              res.send({ response: "error", message: error.message });
+            }
     },
 
     delete : async(req, res) => {

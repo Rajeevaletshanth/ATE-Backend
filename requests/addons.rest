@@ -16,6 +16,14 @@ Content-Type: application/json
 GET http://localhost:5005/addons/1
 Content-Type: application/json
 
+###Get by multiple id
+POSt http://localhost:5005/addons/multiple
+Content-Type: application/json
+
+{
+    "ids": [1,2,4,5]
+}
+
 
 ###Edit a product
 PUT http://localhost:5005/addons/edit/1

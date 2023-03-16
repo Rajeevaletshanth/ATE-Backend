@@ -37,14 +37,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyI
 
 ###
 //Edit user
-PUT http://localhost:5005/user/edit/32
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiMTY2Nzc5MzI4ODEzMy02NjgtNjY4OTIwMl9hdmF0YXItcHJvZmlsZS1oZC1wbmctZG93bmxvYWQucG5nIiwidXNlcm5hbWUiOiJMVFcgVGVjaCIsImVtYWlsIjoidXNlcjFAbHR3dGVjaC5pdCIsImF1dGhvcml0eSI6IntcInJvbGVcIjpbXCJ1c2VyXCJdfSIsImlhdCI6MTY2OTYxODc1MywiZXhwIjoxNjY5NjIyMzUzfQ.SvLsHTuZ4HXzc_z4fBcncDm3muv9jz3yM3IM7y6utXU
+PUT http://localhost:5005/user/edit/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjoiMTY3ODc3NTk5OTg3My1za3VsbGFybXkuamZpZiIsInVzZXJuYW1lIjoiUmFqZWV2IiwiZW1haWwiOiJ1c2VyQGx0d3RlY2guaXQiLCJhdXRob3JpdHkiOiJ7XCJyb2xlXCI6W1widXNlclwiXX0iLCJpYXQiOjE2Nzg3NzYxMzQsImV4cCI6MTY3ODc3OTczNH0.ZHg3PDY0fw8PGzWll3-g15W-n8UIeqyxy8F1rkVDL-U
 Content-Type: application/json
 
 {
-    "username" : "ALEX",
+    "username" : "Alex",
     "address" : [{"type" : "Home" , "address" : "123, Main Rd, Mannar"}],
-    "avatar" : "1667793288133-668-6689202_avatar-profile-hd-png-download.png",
+    "avatar" : "1678775999873-skullarmy.jfif",
     "phone_no" : "5678901235"
 }
 

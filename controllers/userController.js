@@ -13,14 +13,14 @@ const User = require('../models/user');
 module.exports = {
     register: async (req, res) => {
         const username = req.body.username;         
-        const home_address = JSON.stringify(req.body.address);
+        // const home_address = JSON.stringify(req.body.address);
         const authority = JSON.stringify(req.body.authority);
         const phone_no = req.body.phone_no;
         const email = req.body.email;
         const password = req.body.password; 
         const avatar = req.body.avatar;
 
-        const address = JSON.stringify([{type : "Home" , address : home_address}])
+        // const address = JSON.stringify([{type : "Home" , address : home_address}])
 
         try {
             if(JSON.parse(authority).role.length === 1 && process.env.USER_ROLES.includes(JSON.parse(authority).role[0])){
@@ -31,7 +31,7 @@ module.exports = {
                         try { 
                             const newUser = new User({
                                 username: username,
-                                address: address,
+                                // address: address,
                                 authority: authority,
                                 phone_no: phone_no,
                                 email: email,
