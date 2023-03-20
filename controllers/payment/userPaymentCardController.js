@@ -1,10 +1,10 @@
 require('dotenv').config();
-const transporter = require('../services/nodemailer/mailer');
+const transporter = require('../../services/nodemailer/mailer');
 require('dotenv').config();
 const { Op } = require("sequelize");
 
-const Card = require('../models/paymentCard');
-const PaymentCustomer = require('../models/paymentCustomer');
+const Card = require('../../models/userPaymentCard');
+const PaymentCustomer = require('../../models/userPaymentCustomer');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 
@@ -12,13 +12,12 @@ module.exports = {
 
     create_customer: async (req, res) => {
         const name = req.body.name;
-        const admin_id = req.body.admin_id;
-        console.log(name)
+        const user_id = req.body.user_id;
 
         try {
             const checkCustomer = await PaymentCustomer.findAll({
                 where: {
-                    admin_id: admin_id
+                    user_id: user_id
                 }
             })
             if(checkCustomer.length > 0)
@@ -30,7 +29,7 @@ module.exports = {
                 });
 
                 const customer = new PaymentCustomer({
-                        admin_id: admin_id,
+                        user_id: user_id,
                         customer_id: createCustomer.id
                 })
                 await customer.save()
@@ -42,12 +41,12 @@ module.exports = {
     },
 
     get_customer_byID: async (req, res) => {
-        const { admin_id } = req.params;
+        const { user_id } = req.params;
 
         try {
             const customer = await PaymentCustomer.findAll({
                 where:{
-                    admin_id: admin_id
+                    user_id: user_id
                 }
             })
             if(customer.length > 0){
@@ -61,7 +60,7 @@ module.exports = {
     },
 
     attach_payment_method: async (req, res) => {
-        const { admin_id } = req.params;
+        const { user_id } = req.params;
         const customer_name = req.body.customer_name;
         const name = req.body.name;
         const email = req.body.email;
@@ -71,14 +70,12 @@ module.exports = {
         const exp_year = req.body.exp_year;
         const cvc = req.body.cvc;
         const cardId = req.body.cardId;
-        const last_four_digits = req.body.last4Number;
-        const cardType = req.body.cardType;
         const primary_card = req.body.primary_card;
 
         try {
             const checkCardExists = await Card.findAll({
                 where:{
-                    admin_id: admin_id,
+                    user_id: user_id,
                     card_id: cardId
                 }
             })
@@ -100,7 +97,7 @@ module.exports = {
 
                 await PaymentCustomer.findAll({
                     where:{
-                        admin_id: admin_id
+                        user_id: user_id
                     }
                 }).then(async(response) => {
                     if(response.length > 0){
@@ -114,7 +111,7 @@ module.exports = {
                                 primary_card: false
                             },{
                                 where: {
-                                    admin_id: admin_id
+                                    user_id: user_id
                                 }
                             })                           
                         }
@@ -122,7 +119,7 @@ module.exports = {
                         let setPrimary = false;
                         await Card.findAll({
                             where:{
-                                admin_id:admin_id,                  
+                                user_id:user_id,                  
                             }
                         }).then((cards) => {
                             if(cards.length > 0){
@@ -133,7 +130,7 @@ module.exports = {
                         })
     
                         const card = new Card({
-                            admin_id: admin_id,
+                            user_id: user_id,
                             payment_method_id: paymentMethod.id,
                             card_holder_name: name,
                             card_id: cardId,
@@ -154,13 +151,13 @@ module.exports = {
                         });
     
                         const customer = new PaymentCustomer({
-                                admin_id: admin_id,
+                                user_id: user_id,
                                 customer_id: createCustomer.id
                         })
                         await customer.save()
     
                         const card = new Card({
-                            admin_id: admin_id,
+                            user_id: user_id,
                             payment_method_id: paymentMethod.id,
                             card_holder_name: name,
                             card_id: cardId,
@@ -187,14 +184,14 @@ module.exports = {
     },
 
     detach_payment_method: async (req, res) => {
-        const { admin_id } = req.params
+        const { user_id } = req.params
         const card_id = req.body.card_id;
         let setPrimary = false;
 
         try {
             await Card.findAll({
                 where:{
-                    admin_id: admin_id,
+                    user_id: user_id,
                     card_id: card_id
                 }
             }).then(async(response) => {
@@ -216,7 +213,7 @@ module.exports = {
                     if(setPrimary){
                         await Card.findAll({
                             where:{
-                                admin_id:admin_id
+                                user_id:user_id
                             }
                         }).then(async(cardResp) => {
                             if(cardResp.length > 0){
@@ -243,12 +240,12 @@ module.exports = {
     },
 
     get_allcards_byId: async (req, res) => {
-        const { admin_id } = req.params;
+        const { user_id } = req.params;
 
         try {
             await Card.findAll({
                 where:{
-                    admin_id: admin_id
+                    user_id: user_id
                 }
             }).then(async(response) => {
                 if(response.length > 0){
@@ -265,7 +262,7 @@ module.exports = {
     },
 
     change_primary_card: async (req, res) => {
-        const { admin_id } = req.params;
+        const { user_id } = req.params;
         const card_id = req.body.card_id;
 
         try {           

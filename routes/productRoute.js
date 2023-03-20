@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require('../controllers/productController');
+const controller = require('../controllers/payment/productController');
 const {adminAuthenticateToken} = require("../auth/authentication")
 
 router.post('/create', controller.create)

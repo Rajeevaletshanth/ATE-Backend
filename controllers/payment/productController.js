@@ -1,6 +1,6 @@
 require('dotenv').config();
-const logger = require('../config/logger');
-const Product = require('../models/product');
+const logger = require('../../config/logger');
+const Product = require('../../models/product');
 // const ComboMenu = require('../models/comboMenu');
 
 module.exports = {

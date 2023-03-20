@@ -118,6 +118,8 @@ const uploadRoute = require('./routes/uploadRoute');
 const paymentCardRoute = require('./routes/paymentCardRoute');
 const stripeProductRoute = require('./routes/stripeProductRoute');
 const paymentRoute = require('./routes/paymentRoute');
+const UserPaymentCardRoute = require('./routes/userPaymentCardRoute');
+const UserPaymentRoute = require('./routes/userPaymentRoute');
 
 const restaurantRoute = require('./routes/restaurantRoute');
 const productRoute = require('./routes/productRoute');
@@ -142,6 +144,9 @@ app.use('/superadmin', superadminRoute);
 app.use('/payment_card', paymentCardRoute);
 app.use('/stripe_product', stripeProductRoute);
 app.use('/payment', paymentRoute);
+app.use('/user_payment_card', UserPaymentCardRoute);
+app.use('/user_payment', UserPaymentRoute);
+
 
 app.use('/restaurant', restaurantRoute);
 app.use('/product', productRoute);

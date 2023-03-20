@@ -1,10 +1,10 @@
 require('dotenv').config();
-const transporter = require('../services/nodemailer/mailer');
+const transporter = require('../../services/nodemailer/mailer');
 require('dotenv').config();
 
-const Card = require('../models/paymentCard');
-const Product = require('../models/stripeProduct');
-const PaymentCustomer = require('../models/paymentCustomer');
+const Card = require('../../models/paymentCard');
+const Product = require('../../models/stripeProduct');
+const PaymentCustomer = require('../../models/paymentCustomer');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 

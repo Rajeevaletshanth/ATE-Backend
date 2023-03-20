@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require('../controllers/paymentCardController');
+const controller = require('../controllers/payment/paymentCardController');
 const {authenticateToken} = require("../auth/authentication")
 
 router.post('/create_customer', controller.create_customer)
