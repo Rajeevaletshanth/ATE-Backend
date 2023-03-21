@@ -14,10 +14,12 @@ module.exports = {
         const restaurant_id = req.body.restaurant_id;
         const user_id = req.body.user_id;
         const products = JSON.stringify(req.body.products);
-        // const order_time = req.body.order_time;
         const delivery_fee = req.body.delivery_fee;
         const total_amount = req.body.total_amount;
         const status = req.body.status;
+        const order_type = req.body.order_type;
+        const delivery_address = req.body.delivery_address;
+        const phone_no = req.body.phone_no;
 
         //Current Time
         const currentTime = new Date();
@@ -34,7 +36,10 @@ module.exports = {
                 order_time: time,
                 delivery_fee: delivery_fee,
                 total_amount: total_amount,
-                status: status
+                status: status,
+                order_type:order_type,
+                delivery_address:delivery_address,
+                phone_no:phone_no
             })
             await newOrder.save();
 
@@ -262,6 +267,9 @@ module.exports = {
                                             order_time: order.order_time,
                                             delivery_fee: order.delivery_fee,
                                             total_amount: order.total_amount,
+                                            order_type: order.order_type,
+                                            delivery_address: order.delivery_address,
+                                            phone_no: order.phone_no,
                                             status: order.status,
                                             items: items
                                         }                                       

@@ -41,7 +41,10 @@ Content-Type: application/json
     "order_time" : "18:00",
     "delivery_fee" : 25,
     "total_amount" : 124.00,
-    "status" : "pending"
+    "status" : "pending",
+    "order_type" : "delivery",
+    "delivery_address" : "123, Main Rd",
+    "phone_no" : "0713456782"
 }
 
 ###

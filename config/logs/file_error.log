@@ -474,3 +474,8 @@
   message: 'vjvfc2k16@gmail.com : Wrong Email/ Password combination!',
   timestamp: '2023-03-13T09:34:54.767Z'
 }
+{
+  level: 'error',
+  message: 'user@ltwtech.it : Wrong Email/ Password combination!',
+  timestamp: '2023-03-21T05:43:50.748Z'
+}

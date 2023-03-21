@@ -5,6 +5,7 @@ require('dotenv').config();
 const Card = require('../../models/paymentCard');
 const Product = require('../../models/stripeProduct');
 const PaymentCustomer = require('../../models/paymentCustomer');
+const Payment = require('../../models/payment')
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 
@@ -169,6 +170,35 @@ module.exports = {
             res.json({response: "success", message: "Checkout session successful", data: session})
         } catch (error) {
             res.json({response:"error", message: 'Checkout session failure', error: [error]})
+        }
+    },
+
+    capture_payment: async (req, res) => {
+        const { admin_id, amount, paymentMethodId, currency } = req.body
+        try {
+            const customer_id = await getPaymentCustomerId(admin_id);
+            if(customer_id){
+                const paymentIntent = await stripe.paymentIntents.create({
+                amount,
+                payment_method: paymentMethodId,
+                currency: currency,
+                customer: customer_id,
+                confirm: true
+                });
+
+                const newPayment = new UserPayment({
+                    admin_id: admin_id,
+                    payment_intent_id: paymentIntent.id,
+                    amount: amount,
+                    status: "success"
+                })
+                await newPayment.save();
+                res.json({response:"success", message: 'Payment captured successfully:', paymentIntent: paymentIntent})
+            }else{
+                res.json({response:"error", message: 'Customer not found!'})
+            }
+          } catch (error) {
+            res.json({response:"error", message: 'Checkout session failure', error: error.message})
         }
     }
     

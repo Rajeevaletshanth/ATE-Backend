@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const database = require('../db_connect');
 
+const UserPayment = database.define('user_payment', {
 
-const Order = database.define('order', {
-
+        // attributes
         id:{
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -12,51 +12,33 @@ const Order = database.define('order', {
 
         user_id:{
             type: Sequelize.INTEGER,
+            allowNull: false,
         },
 
-        restaurant_id:{
-            type: Sequelize.INTEGER,
-        },
-
-        products:{
+        payment_intent_id: {
             type: Sequelize.STRING,
             allowNull: false
         },
 
-        order_date:{
-            type: Sequelize.DATE,
+        product_name:{
+            type: Sequelize.STRING
         },
 
-        order_time:{
-            type: Sequelize.TIME,
+        product_id:{
+            type: Sequelize.STRING
         },
 
-        delivery_fee:{
-            type: Sequelize.FLOAT,
-        },
-
-        total_amount:{
-            type: Sequelize.FLOAT,
-        },
-
-        order_type:{
+        amount:{
             type: Sequelize.STRING,
-        },
-
-        delivery_address:{
-            type: Sequelize.STRING,
-        },
-
-        phone_no:{
-            type: Sequelize.STRING,
+            allowNull: false,
         },
 
         status:{
-            type: Sequelize.STRING,
+            type: Sequelize.STRING
         },
 
         is_deleted:{
-          type: Sequelize.BOOLEAN,
+            type: Sequelize.BOOLEAN
         },
 
         createdAt: {
@@ -73,6 +55,5 @@ const Order = database.define('order', {
     freezeTableName: true
 });
 
-// Admin.sync({ force: true })
 
-module.exports= Order;
+module.exports= UserPayment;

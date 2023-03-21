@@ -1,6 +1,6 @@
 ###
 //Capture a charge
-POST http://localhost:5005/payment/create_draft_invoice
+POST http://localhost:5005/user_payment/create_draft_invoice
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 //Direct payment
-POST http://localhost:5005/payment/direct_payment
+POST http://localhost:5005/user_payment/direct_payment
 Content-Type: application/json
 
 {
@@ -38,16 +38,17 @@ Content-Type: application/json
 
 ###
 //Checkout session
-POST http://localhost:5005/payment/checkout_session
+POST http://localhost:5005/user_payment/checkout_session
 Content-Type: application/json
+
 
 ###
 //Capture a payment
-POST http://localhost:5005/payment/capture_payment
+POST http://localhost:5005/user_payment/capture_payment
 Content-Type: application/json
 
 {
-    "admin_id": "1",
+    "user_id": "10",
     "amount": 300, 
     "paymentMethodId": "pm_1Mnx9GCwlEWy2kFV6dVW1yyq",
     "currency": "eur"
