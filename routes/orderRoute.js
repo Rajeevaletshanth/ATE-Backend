@@ -5,6 +5,7 @@ const controller = require('../controllers/orderController');
 const { adminAuthenticateToken } = require("../auth/authentication")
 
 router.post('/create', controller.create)
+router.post('/create_bulk', controller.createBulk)
 router.put('/edit/:id', controller.edit)
 router.get('/:id', controller.getByid)
 router.get('/all_orders/:user_id', controller.getOrdersByUserId)

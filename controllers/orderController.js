@@ -44,16 +44,66 @@ module.exports = {
             await newOrder.save();
 
             if(newOrder){
-                res.send({"response": "success", "message" : "Order add Successfully."})
+                res.send({response: "success", "message" : "Order add Successfully."})
             }else{
-                res.send({"response" : "error", "message" : "Sorry, failed to save!"})
+                res.send({response : "error", "message" : "Sorry, failed to save!"})
             }
 
         }catch(error){
-            res.send({"response": "error", "message" : error.message});
+            res.send({response: "error", "message" : error.message});
         }
 
     },
+
+    createBulk: async (req, res) => {
+        try {
+          const orders = req.body.orders; // an array of orders
+          const groupedOrders = orders.reduce((acc, order) => {
+            const { restaurant_id } = order;
+            if (!acc[restaurant_id]) {
+              acc[restaurant_id] = [];
+            }
+            acc[restaurant_id].push(order);
+            return acc;
+          }, {});
+      
+          const result = await Promise.all(Object.keys(groupedOrders).map(async (restaurant_id) => {
+            const restaurantOrders = groupedOrders[restaurant_id];
+            const currentTime = new Date();
+            const hours = currentTime.getHours().toString().padStart(2, "0");
+            const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+            const time = `${hours}:${minutes}`;
+      
+            const bulkOrders = restaurantOrders.map(order => {
+              const { user_id, products, delivery_fee, total_amount, status, order_type, delivery_address, phone_no } = order;
+              return {
+                restaurant_id: restaurant_id,
+                user_id: user_id,
+                products: JSON.stringify(products),
+                order_date: new Date().toISOString().slice(0, 10),
+                order_time: time,
+                delivery_fee: delivery_fee,
+                total_amount: total_amount,
+                status: status,
+                order_type: order_type,
+                delivery_address: delivery_address,
+                phone_no: phone_no
+              }
+            });
+            
+            return await Order.bulkCreate(bulkOrders);
+          }));
+      
+          if (result) {
+            res.send({ response: "success", message: "Orders added successfully.", data: result });
+          } else {
+            res.send({ response: "error", message: "Sorry, failed to save!" });
+          }
+        } catch (error) {
+          res.send({ response: "error", message: error.message });
+        }
+    },
+      
 
     edit: async (req, res) => {
         const { id } = req.params;
