@@ -50,6 +50,6 @@ Content-Type: application/json
 {
     "user_id": "10",
     "amount": 300, 
-    "paymentMethodId": "pm_1Mnx9GCwlEWy2kFV6dVW1yyq",
+    "paymentMethodId": "pm_1MnwrKCwlEWy2kFVwoQ8A494",
     "currency": "eur"
 }
