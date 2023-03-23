@@ -57,7 +57,7 @@ module.exports = {
 
     createBulk: async (req, res) => {
         try {
-          const orders = req.body.orders; // an array of orders
+          const orders = req.body.orders; 
           const groupedOrders = orders.reduce((acc, order) => {
             const { restaurant_id } = order;
             if (!acc[restaurant_id]) {

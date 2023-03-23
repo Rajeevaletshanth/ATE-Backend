@@ -19,29 +19,35 @@ const { authenticateToken, adminAuthenticateToken } = require("./auth/authentica
 
 require('dotenv').config()
 
+
 //Socket io
-const http = require("http");
-const server = http.createServer(app);
-const socketIO = require("socket.io");
-const io = socketIO(server, {
-    transports:['polling'],
-    cors: '*'
-})
+// const http = require("http");
+// const server = http.createServer(app);
+// const socketIO = require("socket.io");
+// const io = socketIO(server, {
+//     transports:['polling'],
+//     cors: '*'
+// })
 
-io.on('connection', (socket) => { 
-    socket.on("join_room", (data) => {
-      socket.join(data);
-    });
+// io.on('connection', (socket) => { 
+//     socket.on("join_room", (data) => {
+//       socket.join(data);
+//     });
   
-    socket.on("send_message", (data) => {
-        socket.to(data.room).emit("receive_message", data);
-    });
+//     socket.on("send_message", (data) => {
+//         socket.to(data.room).emit("receive_message", data);
+//     });
 
-    //Realtime order status
-    socket.on("update_order_status", (data) => {
-        socket.to(data.room).emit("get_order_status", data);
-    });
-})
+//     //Order placed
+//     socket.on("order_placed", (data) => {
+//         socket.to(data.room).emit("receive_order", data);
+//     });
+
+//     //Realtime order status
+//     socket.on("update_order_status", (data) => {
+//         socket.to(data.room).emit("get_order_status", data);
+//     });
+// })
 //end of socket io
 
 
@@ -232,7 +238,8 @@ app.use(function (err, req, res, next) {
 });
 
 
-app.listen(process.env.PORT, () => console.log(`Real Estate Tokenization engine on live on port ${process.env.PORT}!`))
+app.listen(process.env.PORT, () => console.log(`ATE engine on live on port ${process.env.PORT}!`))
+// server.listen(process.env.SOCKET_PORT, () => console.log(`SOCKET on port ${process.env.PORT}!`))
 
 module.exports = app;
 
