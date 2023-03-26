@@ -157,7 +157,16 @@ GET http://localhost:5005/orders/5
 
 ###
 #Get all orders by user id
-GET http://localhost:5005/orders/all_orders/1
+GET http://localhost:5005/orders/all_orders/10 
+
+###
+#Track order by order umber
+POST http://localhost:5005/orders/track
+Content-Type: application/json
+
+{
+    "order_number" : "PO-ATE1-IPHWgz3-1679681359369"
+}
 
 ###
 #Get all orders by restaurant id

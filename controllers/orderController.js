@@ -5,8 +5,27 @@ const Order = require('../models/order');
 const Product = require('../models/product');
 const User = require('../models/user')
 const Addons = require('../models/addons');
+const Restaurant = require('../models/restaurant');
 const { response } = require('express');
 
+
+const createUID = (len, restaurant_id) => {
+    const buf = []
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    const charlen = chars.length
+    const length =  len || 10
+
+    buf[0] = `PO-ATE${restaurant_id}-`;
+            
+    for (let i = 1; i < length; i++) {
+        buf[i] = chars.charAt(Math.floor(Math.random() * charlen))
+    }
+
+    const timestamp = Date.now().toString();
+    buf.push(timestamp);
+
+    return buf.join('')
+}
 
 
 module.exports = {
@@ -39,7 +58,8 @@ module.exports = {
                 status: status,
                 order_type:order_type,
                 delivery_address:delivery_address,
-                phone_no:phone_no
+                phone_no:phone_no,
+                order_number: createUID(8,restaurant_id)
             })
             await newOrder.save();
 
@@ -87,7 +107,8 @@ module.exports = {
                 status: status,
                 order_type: order_type,
                 delivery_address: delivery_address,
-                phone_no: phone_no
+                phone_no: phone_no,
+                order_number: createUID(8,restaurant_id)
               }
             });
             
@@ -236,6 +257,7 @@ module.exports = {
                                             delivery_fee: order.delivery_fee,
                                             total_amount: order.total_amount,
                                             status: order.status,
+                                            order_number: order.order_number,
                                             items: items
                                         }                                       
                                     }
@@ -268,6 +290,82 @@ module.exports = {
             })
         } catch (error) {
             res.send({"response": "error", "message" : error.message});
+        }
+        
+    },
+
+    getByOrderNumber: async (req, res) => {
+        const { order_number } = req.body;
+
+        try {
+            const order = await Order.findAll({
+                where: {
+                    order_number: order_number
+                },
+                attributes: ['id']
+            })
+            if(order.length > 0){
+                let results = [];
+                await Promise.all(order.map(async(item, key) => {
+                        const order = await Order.findOne({ 
+                            where: {
+                                id: item.id
+                            }
+                        })
+                        if(order !== null){
+                            if(order.products !== null){
+                                const order_dets = JSON.parse(order.products);
+                                const productArr = order_dets.map(({product_id: id}) => ({id}))
+
+                                const restaurant = await Restaurant.findOne({
+                                    where: {
+                                      id: order.restaurant_id,
+                                    },
+                                });
+            
+                                await Product.findAll({
+                                    where:{
+                                        [Op.or] : productArr
+                                    }
+                                }).then((resp) => {
+                                    if(resp.length > 0){
+                                        let items = [];
+                                        resp.map((item, key) => {
+                                            let quantity = order_dets[key].quantity
+                                            let addons = order_dets[key].addons
+                                            items[key] = {
+                                                    product : resp[key],
+                                                    quantity : quantity,
+                                                    addons : addons
+                                            }
+                                        })
+                                        results[key] = {
+                                            order_id: order.id,
+                                            user_id: order.user_id,
+                                            restaurant_id: order.restaurant_id,
+                                            restaurant_name: restaurant.name,
+                                            restaurant_avatar: restaurant.avatar,
+                                            order_date: order.order_date,
+                                            order_time: order.order_time,
+                                            delivery_fee: order.delivery_fee,
+                                            total_amount: order.total_amount,
+                                            order_type: order.order_type,
+                                            delivery_address: order.delivery_address,
+                                            phone_no: order.phone_no,
+                                            status: order.status,
+                                            order_number: order.order_number,
+                                            items: items
+                                        }                                       
+                                    }
+                                })                 
+                            }   
+                        }
+                }))
+                res.send({response: "success", order : results })
+            }else
+                res.send({response: "error", message : "Order doesn't exist"})
+        } catch (error) {
+            res.send({response: "error", message : error.message});
         }
         
     },
@@ -322,6 +420,7 @@ module.exports = {
                                             delivery_address: order.delivery_address,
                                             phone_no: order.phone_no,
                                             status: order.status,
+                                            order_number: order.order_number,
                                             items: items
                                         }                                       
                                     }

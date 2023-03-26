@@ -55,6 +55,10 @@ const Order = database.define('order', {
             type: Sequelize.STRING,
         },
 
+        order_number:{
+            type: Sequelize.STRING,
+        },
+
         is_deleted:{
           type: Sequelize.BOOLEAN,
         },

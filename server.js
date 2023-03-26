@@ -239,7 +239,7 @@ app.use(function (err, req, res, next) {
 
 
 app.listen(process.env.PORT, () => console.log(`ATE engine on live on port ${process.env.PORT}!`))
-// server.listen(process.env.SOCKET_PORT, () => console.log(`SOCKET on port ${process.env.PORT}!`))
+// server.listen(process.env.SOCKET_PORT, () => console.log(`SOCKET on port ${process.env.SOCKET_PORT}!`))
 
 module.exports = app;
 
