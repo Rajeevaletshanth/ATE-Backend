@@ -116,7 +116,7 @@ module.exports = {
           }));
       
           if (result) {
-            res.send({ response: "success", message: "Orders added successfully.", data: result });
+            res.send({ response: "success", message: "Orders added successfully.", data: result});
           } else {
             res.send({ response: "error", message: "Sorry, failed to save!" });
           }
