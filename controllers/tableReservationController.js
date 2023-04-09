@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 const QRCode = require("qrcode");
 const Order = require("../models/order");
 const User = require("../models/user")
+const moment = require('moment-timezone')
 
 module.exports = {
   create: async (req, res) => {
@@ -16,7 +17,11 @@ module.exports = {
     const reservation_date = req.body.reservation_date;
     const reservation_from = req.body.reservation_from;
     const reservation_to = req.body.reservation_to;
+    const timezone = req.body.timezone;
     const note = req.body.note;
+
+    const local_from = moment.tz(reservation_from, 'YYYY-MM-DD HH:mm:ss', timezone)
+    const local_to = moment.tz(reservation_to, 'YYYY-MM-DD HH:mm:ss', timezone)
 
     let data = {
       restaurant_id: restaurant_id,
@@ -24,8 +29,8 @@ module.exports = {
       user_id: user_id,
       guests_count: guests_count,
       reservation_date: reservation_date,
-      reservation_from: reservation_from,
-      reservation_to: reservation_to,
+      reservation_from: local_from,
+      reservation_to: local_to,
       note: note,
       status: "booked",
     };
@@ -39,8 +44,8 @@ module.exports = {
         user_id: user_id,
         guests_count: guests_count,
         reservation_date: reservation_date,
-        reservation_from: reservation_from,
-        reservation_to: reservation_to,
+        reservation_from: local_from,
+        reservation_to: local_to,
         note: note,
         status: "booked",
       });
@@ -55,12 +60,14 @@ module.exports = {
               response: "success",
               message: "Successfully reserved.",
               qrcode: "",
+              data: newReservation
             });
           } else {
             res.json({
               response: "success",
               message: "Successfully reserved.",
               qrcode: code,
+              data: newReservation
             });
           }
         });
@@ -75,6 +82,7 @@ module.exports = {
   getAll: async (req, res) => {
     const { restaurant_id } = req.params;
     const date = req.body.date;
+    const timezone = req.body.timezone;
 
     try {
       await TableReservation.findAll({
@@ -146,32 +154,56 @@ module.exports = {
     const reservation_date = req.body.reservation_date;
     const reservation_from = req.body.reservation_from;
     const reservation_to = req.body.reservation_to;
+    const timezone = req.body.timezone;
+
+    const local_reservation_from = moment.tz(reservation_from, 'YYYY-MM-DD HH:mm:ss', timezone)
+    const local_reservation_to = moment.tz(reservation_to, 'YYYY-MM-DD HH:mm:ss', timezone)
 
     try {
+
       await TableReservation.findAll({
         where: {
           restaurant_id: restaurant_id,
           reservation_date: reservation_date,
-          reservation_from: {
-            [Op.lte]: new Date(reservation_from),
-            [Op.lte]: new Date(reservation_to)
-          },
-          reservation_to: {
-            [Op.gt]: new Date(reservation_from),
-            [Op.gt]: new Date(reservation_to)
-          },
+          [Op.and]: [
+            {
+              [Op.or]: [
+                {
+                  reservation_from: {
+                    [Op.lt]: new Date(local_reservation_to)
+                  },
+                  reservation_to: {
+                    [Op.gt]: new Date(local_reservation_from)
+                  }
+                },
+                {
+                  reservation_from: {
+                    [Op.eq]: new Date(local_reservation_from)
+                  },
+                  reservation_to: {
+                    [Op.eq]: new Date(local_reservation_to)
+                  }
+                }
+              ]
+            },
+          ]
         },
       }).then(async (response) => {
         if (response.length > 0) {
+
           let array = [];
           response.map((item) => {
             array = [...array, ...JSON.parse(item.table_ids)];
           });
           let bookedTables = array.map((id) => ({ table_no: id }));
+
+          const uniqueTableNumbers = [...new Set(bookedTables.map(item => item.table_no))];
           await Table.findAll({
             where: {
               restaurant_id: restaurant_id,
-              [Op.not]: bookedTables,
+              table_no: {
+                [Op.notIn]: uniqueTableNumbers,
+              },
             },
           }).then((tab_response) => {
             if (tab_response.length > 0) {
@@ -188,6 +220,7 @@ module.exports = {
             }
           });
         } else {
+
           await Table.findAll({
             where: {
               restaurant_id: restaurant_id,
@@ -221,8 +254,10 @@ module.exports = {
           id: id,
         },
       });
-      if (table) res.send({ response: "success", data: tableReservation });
-      else res.send({ response: "error", message: "No reservations found!" });
+      if (tableReservation) 
+        res.send({ response: "success", data: tableReservation });
+      else 
+        res.send({ response: "error", message: "No reservations found!" });
     } catch (error) {
       res.send({ response: "error", message: error.message });
     }

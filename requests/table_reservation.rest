@@ -4,12 +4,13 @@ POST http://localhost:5005/table_reservation/create/1
 Content-Type: application/json
 
 {
-      "table_ids": [1,4,5],
+      "table_ids": [1,2,3,4],
       "user_id": 1,
       "guests_count": 10,
       "reservation_date": "2023-01-31",
-      "reservation_from": "2023-01-31T14:30:00.000Z",
-      "reservation_to": "2023-01-31T15:30:00.000Z",
+      "reservation_from": "2023-01-31 14:30:00.00",
+      "reservation_to": "2023-01-31 15:30:00.00",
+      "timezone": "Europe/Rome",
       "note": "Birthday Party"
 }
 
@@ -19,7 +20,8 @@ POST http://localhost:5005/table_reservation/list/1
 Content-Type: application/json
 
 {
-      "date" : "2023-01-02"
+      "date" : "2023-01-31",
+      "timezone": "Europe/Rome"
 }
 
 ###
@@ -28,16 +30,19 @@ POST http://localhost:5005/table_reservation/check_availability/1
 Content-Type: application/json
 
 {
-      "reservation_date": "2023-01-25",
-      "reservation_from" : "2023-01-25 22:30:00"
+  "reservation_date": "2023-01-31",
+  "reservation_from": "2023-01-31 15:20:00.00",
+  "reservation_to": "2023-01-31 16:31:00.00",
+  "timezone": "Europe/Rome"
 }
+
 
 ###
 //Get by id
-GET http://localhost:5005/table_reservation/1
+GET http://localhost:5005/table_reservation/12
 Content-Type: application/json
 
 ###
 //Cancel reservation
-DELETE http://localhost:5005/table_reservation/cancel/1
+DELETE http://localhost:5005/table_reservation/cancel/11
 Content-Type: application/json
