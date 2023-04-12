@@ -8,6 +8,24 @@ const Order = require("../models/order");
 const User = require("../models/user")
 const moment = require('moment-timezone')
 
+const createUID = (len, user_id) => {
+  const buf = []
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charlen = chars.length
+  const length =  len || 5
+
+  buf[0] = `RES${user_id}`;
+          
+  for (let i = 1; i < length; i++) {
+      buf[i] = chars.charAt(Math.floor(Math.random() * charlen))
+  }
+
+  // const timestamp = Date.now().toString();
+  // buf.push(timestamp);
+
+  return buf.join('')
+}
+
 module.exports = {
   create: async (req, res) => {
     const { restaurant_id } = req.params;
@@ -23,19 +41,8 @@ module.exports = {
     const local_from = moment.tz(reservation_from, 'YYYY-MM-DD HH:mm:ss', timezone)
     const local_to = moment.tz(reservation_to, 'YYYY-MM-DD HH:mm:ss', timezone)
 
-    let data = {
-      restaurant_id: restaurant_id,
-      table_ids: JSON.stringify(table_ids),
-      user_id: user_id,
-      guests_count: guests_count,
-      reservation_date: reservation_date,
-      reservation_from: local_from,
-      reservation_to: local_to,
-      note: note,
-      status: "booked",
-    };
-
-    let reservationData = JSON.stringify(data);
+    const reservation_number = createUID(10,user_id)
+    let reservationData = JSON.stringify(reservation_number);
 
     try {
       const newReservation = new TableReservation({
@@ -46,6 +53,7 @@ module.exports = {
         reservation_date: reservation_date,
         reservation_from: local_from,
         reservation_to: local_to,
+        reservation_number: reservation_number,
         note: note,
         status: "booked",
       });

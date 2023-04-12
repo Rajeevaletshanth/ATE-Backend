@@ -44,6 +44,10 @@ const TableReservation = database.define('table_reservation', {
         allowNull: false
     },
 
+    reservation_number:{
+        type: Sequelize.STRING
+    },
+
     note: {
         type: Sequelize.STRING
     },
