@@ -83,7 +83,7 @@ module.exports = {
                                     
                                     let access_role = user[0].authority;
                                     //jwt
-                                    const user_det = {id: user[0].id, avatar: user[0].avatar, username:user[0].username, email:user[0].email, authority: access_role}  
+                                    const user_det = {id: user[0].id, avatar: user[0].avatar, username:user[0].username, email:user[0].email, phone:user[0].phone_no, address:user[0].address, authority: access_role}  
                                     let access_token = "";
                                     let roles = JSON.parse(user[0].authority).role;      
 

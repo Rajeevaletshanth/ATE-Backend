@@ -16,6 +16,7 @@ const cors = require("cors");
 
 
 const { authenticateToken, adminAuthenticateToken } = require("./auth/authentication")
+const { userAuthenticateToken } = require("./auth/user_authentication")
 
 require('dotenv').config()
 
@@ -109,12 +110,16 @@ app.use(requestIp.mw())
 //Welcome Route
 app.get('/validate', authenticateToken, (req, res) => {
     // res.json(req.user)
-    res.send({ "message": "Welcome to ATE Engine...", "authenticate": true })
+    res.send({ response:"success", message: "Welcome to ATE Engine...", authenticate: true })
 })
 
 app.get('/superadmin/validate', adminAuthenticateToken, (req, res) => {
     // res.json(req.user)
-    res.send({ "message": "Welcome to ATE Engine...", "authenticate": true })
+    res.send({ response:"success", message: "Welcome to ATE Engine...", authenticate: true })
+})
+
+app.get('/user/validate', userAuthenticateToken, (req, res) => {
+    res.send({ response:"success", message: "Welcome to ATE Engine...", authenticate: true })
 })
 
 //Routes
