@@ -375,7 +375,8 @@ module.exports = {
         try {
             const order = await Order.findAll({
                 where: {
-                    user_id: user_id
+                    user_id: user_id,
+                    is_deleted: false
                 },
                 attributes: ['id']
             })
