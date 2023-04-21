@@ -3,7 +3,8 @@ POST http://localhost:5005/cuisines/create
 Content-Type: application/json
 
 {
-    "name": "Mexican"
+    "name": "Mexican",
+    "avatar": "1678173221942-CanadianFood.png"
 }
 
 ###Get All
