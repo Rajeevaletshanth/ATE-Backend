@@ -78,11 +78,11 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5005/user/change_password/10
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImF2YXRhciI6IjE2ODEzNzc1MTkyNzItc2lkZS12aWV3LXN0ZWFrLXdpdGgtZ3JpbGxlZC12ZWdldGFibGVzLXdpdGgtc2F1Y2UtZ2xhc3MtcmVkLXdpbmUuanBnIiwidXNlcm5hbWUiOiJBbGV4eTIiLCJlbWFpbCI6ImFsZXhAZ21haWwuY29tIiwiYXV0aG9yaXR5Ijoie1wicm9sZVwiOltcInVzZXJcIl19IiwiaWF0IjoxNjgxNTQzMjc2LCJleHAiOjE2ODE2Mjk2NzZ9.vP10hOfkJBY2GCr7eQ8-XaT35kZSrfFExDI9OyNhBzE
+PUT http://localhost:5005/user/change_password/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiYXZhdGFyIjpudWxsLCJ1c2VybmFtZSI6IkFsZXh5IiwiZW1haWwiOiJhbGV4QGdtYWlsLmNvbSIsInBob25lIjpudWxsLCJhZGRyZXNzIjpudWxsLCJhdXRob3JpdHkiOiJ7XCJyb2xlXCI6W1widXNlclwiXX0iLCJpYXQiOjE2ODIxNjM5NDcsImV4cCI6MTY4MjI1MDM0N30.B9Aizoe9ctuz59HGTIckvd67D9Nm6mr3Uo_pTgRjbCc
 Content-Type: application/json
 
 {
-    "currentPassword" : "12345",
-    "newPassword" : "1234"
+    "currentPassword" : "1234",
+    "newPassword" : "12345"
 }

@@ -2263,3 +2263,38 @@
   message: 'alex@gmail.com logged in...',
   timestamp: '2023-04-21T04:55:02.061Z'
 }
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-04-22T05:43:47.999Z'
+}
+{
+  level: 'info',
+  message: 'kfc@gmai.com logged in...',
+  timestamp: '2023-04-22T06:01:41.959Z'
+}
+{
+  level: 'info',
+  message: 'pizzahut@gmail.com logged in...',
+  timestamp: '2023-04-22T06:23:23.410Z'
+}
+{
+  level: 'info',
+  message: 'admin@ltwtech.it logged in...',
+  timestamp: '2023-04-22T06:30:44.472Z'
+}
+{
+  level: 'error',
+  message: 'alex@gmail.com : Wrong Email/ Password combination!',
+  timestamp: '2023-04-22T11:45:44.404Z'
+}
+{
+  level: 'info',
+  message: 'alex@gmail.com logged in...',
+  timestamp: '2023-04-22T11:45:47.104Z'
+}
+{
+  level: 'info',
+  message: 'alex@gmail.com logged in...',
+  timestamp: '2023-04-23T05:10:19.834Z'
+}

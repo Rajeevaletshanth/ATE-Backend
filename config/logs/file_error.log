@@ -484,3 +484,8 @@
   message: 'alex@gmail.com : Wrong Email/ Password combination!',
   timestamp: '2023-04-11T12:01:04.623Z'
 }
+{
+  level: 'error',
+  message: 'alex@gmail.com : Wrong Email/ Password combination!',
+  timestamp: '2023-04-22T11:45:44.408Z'
+}
